@@ -87,7 +87,10 @@ Page({
   // 识别花草
   plantRecognize: function (path, size) {
     var that = this;
-    const uploadTask = wx.uploadFile({
+    wx.showLoading({
+      title: '识别中...',
+    })
+    wx.uploadFile({
       // url: 'https://weiquaninfo.cn/plantRecognize',
       url: 'https://hiyoutest.doublecom.net/wxAppToolApi/Distinguish/',
       filePath: path,
@@ -98,6 +101,7 @@ Page({
       success: function (res) {
         var data = res.data;
         data = JSON.parse(data);
+        console.log(data);
         switch (data.Status) {
           case 1001:
             wx.hideLoading();
@@ -132,7 +136,7 @@ Page({
               isHideRightImg = false;
             }
             for (var i = 0; i < plants.length; i++){
-              plants[i].Score = parseInt(plants[i].Score * 100) + '%'
+              plants[i].Score = (plants[i].Score * 100).toFixed(2) + '%'
               if (plants[i].AliasName.length == 0){
                 plants[i].AliasName = '无';
               }
@@ -149,6 +153,7 @@ Page({
         }
       },
       fail: function () {
+        that.showDialog("go to fail");
         wx.hideLoading();
       }
     })

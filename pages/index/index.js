@@ -329,15 +329,15 @@ Page({
     this.mapCtx = wx.createMapContext('map')
   },
   onShow: function () {
-    wx.onAccelerometerChange(function (e) {
-      if (e.x > 0.5 && e.y > 0.5) {
-        wx.showToast({
-          title: '摇一摇成功',
-          icon: 'success',
-          duration: 2000
-        })
-      }
-    })
+    // wx.onAccelerometerChange(function (e) {
+    //   if (e.x > 0.5 && e.y > 0.5) {
+    //     wx.showToast({
+    //       title: '摇一摇成功',
+    //       icon: 'success',
+    //       duration: 2000
+    //     })
+    //   }
+    // })
   },
   getCenterLocation: function (e) {
     if (e.controlId==1){

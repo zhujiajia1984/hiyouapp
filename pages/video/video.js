@@ -11,7 +11,7 @@ Page({
     curTime: '0.00',
     curPercent: 0,
     sysWidth: 0,
-    playPos:{
+    playPos: {
       leftPos: '',
       topPos: '',
     },
@@ -20,74 +20,74 @@ Page({
     isHideTime: true,
     markerId: 0,
     isNotFavour: true,
-    contents:{
+    contents: {
       type: "",
       isText: "",
-      src:"",
-      content:"",
+      src: "",
+      content: "",
     },    // 内容
   },
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////
   // 点击收藏景点按钮事件
-  clickFavour:function(){
-    var self = this 
-      wx.login({
-        success: function (re) {
-          var code = re.code
-          wx.getUserInfo({
-            success: function (res) {
-              wx.request({
-                url: "https://hiyoutest.doublecom.net/wxAppToolApi/Wxusername/",
-                header: {
-                  "Content-Type": "application/x-www-form-urlencoded"
-                },
-                method: "POST",
-                data: {
-                  MarkerId: self.data.id,
-                  Wxid: code,
-                  encryptedData:res.encryptedData,
-                  signature: res.signature,
-                  iv:res.iv
-                },
-                complete: function (res) {
-                  if (res == null || res.data == null) {
-                    console.error('网络请求失败');
-                    return
-                  } else {
-                    if(res.data[0].text=='yes'){
-                      try {
-                        wx.setStorageSync('unionid', res.data[0].unionid)
-                      } catch (e) {
-                      }
-                      if(res.data[0].sign==0){
-                        self.setData({ isNotFavour: false });
-                        wx.showToast({
-                          title: '收藏成功!',
-                          content: '收藏成功!',
-                          showCancel: false
-                        })
-                      }else{
-                        self.setData({ isNotFavour:true });
-                        wx.showToast({
-                          title: '取消收藏成功!',
-                          content: '取消收藏成功!',
-                          showCancel: false
-                        })
-                      }
-                    }else{
+  clickFavour: function () {
+    var self = this
+    wx.login({
+      success: function (re) {
+        var code = re.code
+        wx.getUserInfo({
+          success: function (res) {
+            wx.request({
+              url: "https://hiyoutest.doublecom.net/wxAppToolApi/Wxusername/",
+              header: {
+                "Content-Type": "application/x-www-form-urlencoded"
+              },
+              method: "POST",
+              data: {
+                MarkerId: self.data.id,
+                Wxid: code,
+                encryptedData: res.encryptedData,
+                signature: res.signature,
+                iv: res.iv
+              },
+              complete: function (res) {
+                if (res == null || res.data == null) {
+                  console.error('网络请求失败');
+                  return
+                } else {
+                  if (res.data[0].text == 'yes') {
+                    try {
+                      wx.setStorageSync('unionid', res.data[0].unionid)
+                    } catch (e) {
+                    }
+                    if (res.data[0].sign == 0) {
+                      self.setData({ isNotFavour: false });
                       wx.showToast({
-                        title: '操作失败!',
-                        content: '操作失败!',
+                        title: '收藏成功!',
+                        content: '收藏成功!',
+                        showCancel: false
+                      })
+                    } else {
+                      self.setData({ isNotFavour: true });
+                      wx.showToast({
+                        title: '取消收藏成功!',
+                        content: '取消收藏成功!',
                         showCancel: false
                       })
                     }
+                  } else {
+                    wx.showToast({
+                      title: '操作失败!',
+                      content: '操作失败!',
+                      showCancel: false
+                    })
                   }
                 }
-              })
-            }
+              }
             })
-        }
-      })
+          }
+        })
+      }
+    })
   },
 
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -105,7 +105,7 @@ Page({
           var curTime = parseInt(backgroundAudioManager.currentTime);
           var totalTime = parseInt(backgroundAudioManager.duration);
           var curPercent = Math.round(curTime * 100 / totalTime);
-          that.setData({ curTime: that.secToMin(curTime), totalTime: that.secToMin(totalTime), curPercent: curPercent});
+          that.setData({ curTime: that.secToMin(curTime), totalTime: that.secToMin(totalTime), curPercent: curPercent });
         }, 500)
       })
       // 监听暂停事件，取消定时器
@@ -132,7 +132,7 @@ Page({
 
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////
   // 秒数转分钟秒格式
-  secToMin:function(t){
+  secToMin: function (t) {
     return Math.floor(t / 60) + ":" + (t % 60 / 100).toFixed(2).slice(-2);
   },
 
@@ -150,7 +150,7 @@ Page({
     } else {
       backgroundAudioManager.play();
     }
-    this.setData({ isPause: false, isFirst: false, isHideTime: false});
+    this.setData({ isPause: false, isFirst: false, isHideTime: false });
   },
 
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -165,82 +165,15 @@ Page({
   onLoad: function (options) {
     var contents = [];
     var self = this
-    self.setData({ id: options.id  });
-      var value = wx.getStorageSync('unionid')
-      if (value!='') {
-        // Do something with return value
-        wx.request({
-          url: "https://hiyoutest.doublecom.net/wxAppToolApi/searchPoint/",
-          header: {
-            "Content-Type": "application/x-www-form-urlencoded"
-          },
-          method: "GET",
-          data: {
-            MarkerId: options.id,
-            Unionid:value
-          },
-          complete: function (res) {
-            if (res == null || res.data == null) {
-              console.error('网络请求失败');
-              return
-            } else {
-              if (!res.data[0]['MarkerImg']) {
-                wx.switchTab({
-                  url: '/pages/index/index'
-                })
-              } else {
-                // 初始化播放按钮图片位置
-                var sysInfo = wx.getSystemInfoSync();  //获取手机屏幕参数
-                var playPos = {};
-
-                playPos.leftPos = ((sysInfo.windowWidth - 60) / 2) + 'px';
-                playPos.topPos = ((200 - 60) / 2) + 'px';
-
-                // 初始化背景音频
-                self.initBgAudio(res.data[0].MarkerVideo, res.data[0].MarkerName, res.data[0].MarkerImg);
-
-                // 解析html标签
-                wx.request({
-                  url: 'https://weiquaninfo.cn/htmlParse/wxApp',
-                  data: {
-                    html: res.data[0].MarkerText,
-                  },
-                  method: "POST",
-                  success:function(res){
-                    contents = res.data;
-                    for (var i = 0; i < contents.length; i++){
-                      if (contents[i].type == "img"){
-                        contents[i].isText = false;
-                        contents[i].src = "https://hiyoutest.doublecom.net" + contents[i].src;
-                      }else{
-                        contents[i].isText = true;
-                      }
-                    }
-                    self.setData({ contents: contents });
-                  }
-                })
-                // 
-                var reg = /<[^<>]+>/g;
-                wx.setNavigationBarTitle({ title: res.data[0].MarkerName })
-                self.setData({
-                  map: res.data[0].MarkerImg, poster: res.data[0].MarkerImg,
-                  name: res.data[0].MarkerName, src: res.data[0].MarkerVideo, text: res.data[0].MarkerText.replace(reg, ''),
-                  playPos: playPos, markerId: options.id
-                })
-                if(!!res.data[0]['unionid']){
-                  self.setData({isNotFavour:false})
-                }
-              }
-            }
-          }
-        });
-      }
-    else{
-      wx.login({
-        success: function (re) {
-          var code = re.code
-          wx.getUserInfo({
-            success: function (res) {
+    // 初始化播放按钮图片位置
+    var sysInfo = wx.getSystemInfoSync();  //获取手机屏幕参数
+    var playPos = {};
+    playPos.leftPos = ((sysInfo.windowWidth - 60) / 2) + 'px';
+    playPos.topPos = ((200 - 60) / 2) + 'px';
+    self.setData({ id: options.id, playPos: playPos });
+    var value = wx.getStorageSync('unionid')
+    if (value != '') {
+      // Do something with return value
       wx.request({
         url: "https://hiyoutest.doublecom.net/wxAppToolApi/searchPoint/",
         header: {
@@ -249,7 +182,7 @@ Page({
         method: "GET",
         data: {
           MarkerId: options.id,
-          Wxid: code,
+          Unionid: value
         },
         complete: function (res) {
           if (res == null || res.data == null) {
@@ -261,42 +194,24 @@ Page({
                 url: '/pages/index/index'
               })
             } else {
-              // 初始化播放按钮图片位置
-              var sysInfo = wx.getSystemInfoSync();  //获取手机屏幕参数
-              var playPos = {};
-
-              playPos.leftPos = ((sysInfo.windowWidth - 60) / 2) + 'px';
-              playPos.topPos = ((200 - 60) / 2) + 'px';
-
               // 初始化背景音频
               self.initBgAudio(res.data[0].MarkerVideo, res.data[0].MarkerName, res.data[0].MarkerImg);
 
               // 解析html标签
-              wx.request({
-                url: 'https://weiquaninfo.cn/htmlParse/wxApp',
-                data: {
-                  html: res.data[0].MarkerText,
-                },
-                method: "POST",
-                success: function (res) {
-                  contents = res.data;
-                  for (var i = 0; i < contents.length; i++) {
-                    if (contents[i].type == "img") {
-                      contents[i].isText = false;
-                      contents[i].src = "https://hiyoutest.doublecom.net" + contents[i].src;
-                    } else {
-                      contents[i].isText = true;
-                    }
-                  }
-                  self.setData({ contents: contents });
+              contents = res.data[0].MarkerText;
+              for (var i = 0; i < contents.length; i++) {
+                if (contents[i].type == "img") {
+                  contents[i].isText = false;
+                  contents[i].src = "https://hiyoutest.doublecom.net" + contents[i].src;
+                } else {
+                  contents[i].isText = true;
                 }
-              })
-              // 
-              var reg = /<[^<>]+>/g;
+              }
+              self.setData({ contents: contents });
               wx.setNavigationBarTitle({ title: res.data[0].MarkerName })
               self.setData({
                 map: res.data[0].MarkerImg, poster: res.data[0].MarkerImg,
-                name: res.data[0].MarkerName, src: res.data[0].MarkerVideo, text: res.data[0].MarkerText.replace(reg, ''),
+                name: res.data[0].MarkerName, src: res.data[0].MarkerVideo,
                 playPos: playPos, markerId: options.id
               })
               if (!!res.data[0]['unionid']) {
@@ -306,6 +221,59 @@ Page({
           }
         }
       });
+    }
+    else {
+      wx.login({
+        success: function (re) {
+          var code = re.code
+          wx.getUserInfo({
+            success: function (res) {
+              wx.request({
+                url: "https://hiyoutest.doublecom.net/wxAppToolApi/searchPoint/",
+                header: {
+                  "Content-Type": "application/x-www-form-urlencoded"
+                },
+                method: "GET",
+                data: {
+                  MarkerId: options.id,
+                  Wxid: code,
+                },
+                complete: function (res) {
+                  if (res == null || res.data == null) {
+                    console.error('网络请求失败');
+                    return
+                  } else {
+                    if (!res.data[0]['MarkerImg']) {
+                      wx.switchTab({
+                        url: '/pages/index/index'
+                      })
+                    } else {
+                      // 初始化背景音频
+                      self.initBgAudio(res.data[0].MarkerVideo, res.data[0].MarkerName, res.data[0].MarkerImg);
+                      contents = res.data[0].MarkerText;
+                      for (var i = 0; i < contents.length; i++) {
+                        if (contents[i].type == "img") {
+                          contents[i].isText = false;
+                          contents[i].src = "https://hiyoutest.doublecom.net" + contents[i].src;
+                        } else {
+                          contents[i].isText = true;
+                        }
+                      }
+                      self.setData({ contents: contents });
+
+                      wx.setNavigationBarTitle({ title: res.data[0].MarkerName })
+                      self.setData({
+                        map: res.data[0].MarkerImg, poster: res.data[0].MarkerImg,
+                        name: res.data[0].MarkerName, src: res.data[0].MarkerVideo,
+                        playPos: playPos, markerId: options.id
+                      })
+                      if (!!res.data[0]['unionid']) {
+                        self.setData({ isNotFavour: false })
+                      }
+                    }
+                  }
+                }
+              });
 
             }
           })
@@ -314,7 +282,7 @@ Page({
     }
   },
 
-  navigation(){
+  navigation() {
     wx.navigateTo({
       url: '/pages/line/line?id=' + this.data.id
     })
@@ -325,7 +293,7 @@ Page({
     backgroundAudioManager.stop();
   },
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////
   // 分享
   onShareAppMessage: function (res) {
     var title = "Hi游" + this.data.name;
