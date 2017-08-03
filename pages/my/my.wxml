@@ -1,0 +1,60 @@
+<!--index.wxml-->
+<view class="page">
+  <view bindtap="bindViewTap" class="userinfo">
+    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover" wx:if="{{userInfo.avatarUrl}}"></image>
+    <image class="userinfo-avatar" src="../../img/username.png" bindtap="username" background-size="cover" wx:else></image>
+    <text class="userinfo-nickname" wx:if="{{userInfo.nickName}}">{{userInfo.nickName}}</text>
+    <text class="userinfo-nickname" wx:else>点击头像登录</text>
+  </view>
+  <view class="my-weui-grids">
+    <block wx:for="{{grids}}" wx:key="title">
+      <navigator url="{{item.url}}" class="my-weui-grid" hover-class="weui-grid_active">
+        <image class="weui-grid__icon" src="{{item.iconPath}}" />
+        <view class="weui-grid__label">{{item.title}}</view>
+      </navigator>
+    </block>
+  </view>
+  <view class="weui-cells__title">我的</view>
+  <view class="weui-cells weui-cells_after-title">
+    <navigator url="../myticket/myticket" class="weui-cell weui-cell_access">
+      <view class="weui-cell__hd">
+        <image src="/img/buyTicket.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+      </view>
+      <view class="weui-cell__bd">我的门票</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </navigator>
+        <navigator url="../collection/collection" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <view class="weui-cell__hd">
+        <image src="../../img/cang.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+      </view>
+      <view class="weui-cell__bd">我的收藏</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </navigator>
+  </view>
+
+  <view class="weui-cells__title">设置</view>
+  <view class="weui-cells weui-cells_after-title">
+    <navigator url="" bindtap="location" class="weui-cell weui-cell_access">
+      <view class="weui-cell__hd">
+        <image src="../../img/quan.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+      </view>
+      <view class="weui-cell__bd">授权</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </navigator>
+    <navigator bindtap="del" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <view class="weui-cell__hd">
+        <image src="../../img/del.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+      </view>
+      <view class="weui-cell__bd">清除缓存</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access">{{currentsize}}KB</view>
+    </navigator>
+    <view  class="weui-cell weui-cell_access" >
+      <view class="weui-cell__hd">
+        <image src="../../img/ban.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+      </view>
+      <view class="weui-cell__bd">当前版本</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access">v1.04</view>
+    </view>
+    
+  </view>
+</view>

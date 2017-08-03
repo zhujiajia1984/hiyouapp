@@ -1,0 +1,31 @@
+<view class="container">
+  <view  bindtap="bindViewTap" class="userinfo">
+    <image class="userinfo-avatar" src="../../img/wf.png" background-size="cover"></image>
+    <block  wx:if="{{wf}}">
+       <text class="userinfo-nickname" >免费的Hi游wifi</text>
+    </block>
+    <block  wx:else>
+      <text class="userinfo-nickname">附近有免费的Hi游wifi可用</text>
+      <view class="she"></view>
+      <view class="button-sp-area">
+        <text class="userinfo-nickname" >请打开手机wifi连接</text>
+      </view>
+    </block>
+    <view class="she"></view>
+    <text >免費WI-FI热点说明</text>
+    <view class="weui-panel__bd">
+      <view class="weui-media-boxx weui-media-box_text">
+        <view class="weui-media-box__descc">1.免费wi-fi热点，尽享极速上网/下载应用从此不再担心流量。</view>
+      </view>
+      <view class="weui-media-boxx weui-media-box_text">
+          <view class="weui-media-box__descc">2.15分钟免费时长，超时后可选择续连使用。</view>
+      </view>
+      <view class="weui-media-boxx weui-media-box_text">
+          <view class="weui-media-box__descc">3.首页连接失败，请尝试重新打开wi-fi开关或重新启动手机。</view>
+      </view>
+      <view class="weui-media-boxx weui-media-box_text">
+          <view class="weui-media-box__descc">4.本功能支持所有具有wifi功能的手机。</view>
+      </view>
+  </view>
+</view>
+</view>

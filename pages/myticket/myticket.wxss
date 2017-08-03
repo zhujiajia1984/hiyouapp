@@ -1,0 +1,10 @@
+image {
+width:258px;
+height:258px;
+display:inline-block;
+overflow:hidden;
+  margin: 115rpx;
+  z-index:2;
+  position: fixed;
+  bottom: 280rpx;
+}

@@ -1,0 +1,62 @@
+<view class="page">
+    <view class="page__bd page__bd_spacing">
+        <view class="weui-flex">
+            <view class="weui-flex__item"><view class="placeholder">张家界门票</view></view>
+        </view>
+    </view>
+    <view class="weui-flex">
+        <view class="weui-flex__item"><view class="placeholder">{{typee}}￥{{price}}</view></view>
+            <view class="weui-flex__item"><view class="placeholder">
+
+                      <view class="numbers">
+                        <view class="quantity">
+                          <view class="op" bindtap="minusQuantity" data-id="{{price}}"><text class="text">-</text></view>
+                          <view class="number">
+                            <input class="input" value="{{quantity}}" bindinput="bindChangeQuantity" data-id="{{item.id}}"></input>
+                          </view>
+                          <view class="op" bindtap="addQuantity" data-id="{{price}}"><text class="text">+</text></view>
+                        </view>
+                      </view>
+    
+            </view></view>
+        </view>
+</view>
+<view class=""style="height: 90vh;">
+  <view class="texet" >购买须知</view>
+  <view class="weui-media-box weui-media-box_text">
+    <view class="weui-media-box__desc">【使用方法】</view>
+  </view>
+  <view class="weui-media-box weui-media-box_text">
+    <view class="weui-media-box__desc">1.凭借二维码直接入园。</view>
+  </view>
+  <view class="weui-media-box weui-media-box_text">
+      <view class="weui-media-box__desc">2.或凭二维码到自主取票机换取纸质票入园。</view>
+  </view>
+  <view class="weui-media-box weui-media-box_text">
+      <view class="weui-media-box__desc">【门票有效】</view>
+  </view>
+  <view class="weui-media-box weui-media-box_text">
+      <view class="weui-media-box__desc"> 购买之日起，二维码一年内有效</view>
+  </view>
+  <view class="weui-media-box weui-media-box_text">
+      <view class="weui-media-box__desc">【发票索取】</view>
+  </view>
+  <view class="weui-media-box weui-media-box_text">
+      <view class="weui-media-box__desc">参观结束后到票务中心，凭二维码兑换发票</view>
+  </view>
+  <view class="weui-media-box weui-media-box_text">
+      <view class="weui-media-box__desc">【退票规则】</view>
+  </view>
+  <view class="weui-media-box weui-media-box_text">
+      <view class="weui-media-box__desc">1.退票申请提出后，会在2-10个工作日内处理。</view>
+  </view>
+  <view class="weui-media-box weui-media-box_text">
+      <view class="weui-media-box__desc">2.二维码入园或领取纸质票后不予退票。</view>
+  </view>
+</view>
+<view class="billing-btn">
+  <view class="total">
+    <view>总计：¥{{amount}}元</view>
+  </view>
+  <button class="button" type='warn' bindtap="bindBilling"> 去支付 </button>
+</view>

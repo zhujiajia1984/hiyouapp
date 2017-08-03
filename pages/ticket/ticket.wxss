@@ -1,0 +1,50 @@
+
+button{
+  margin-bottom: 30rpx;
+}
+button:last-child{
+  margin-bottom: 0;
+}
+.page-section-title{
+  padding: 0;
+}
+.swiper-item{
+  display: block;
+  height: 520px;
+}
+.page-section-title{
+  margin-top: 60rpx;
+  position: relative;
+}
+.info{
+  position: absolute;
+  right: 0;
+  color: #353535;
+  font-size: 30rpx;
+}
+.page-foot{
+  margin-top: 50rpx;
+}
+.weui-grid__iconn {
+  display: block;
+  height: 70vh;
+  margin:19px;
+  align-items: center;
+}
+.cc {
+display:block;
+height:89vh;
+
+}
+.classname{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: red;
+}
+.classnam{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top:10px;
+}

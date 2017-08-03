@@ -1,0 +1,22 @@
+
+<map id="navi_map"   show-location="true"  markers="{{markers}}" polyline="{{polyline}}" bindcontroltap="getCenterLocation" longitude="{{longitude}}" latitude="{{latitude}}" controls="{{controls}}"style="width: 100%; height: 90vh;"></map>
+
+     <view class="weui-cells weui-cells_after-title" style="width: 100%; height: 10vh;">
+ <navigator bindtap="del" class="weui-celll weui-cell_access" hover-class="weui-cell_active">
+      <view class="weui-cell__hd">
+         <image src="../../img/qidian.png" style="margin-right: 5px;vertical-align: middle;width:25px; height: 25px;"></image>
+      </view>
+      <view class="weui-cell__bd">当前位置</view>
+      <view class="weui-cell__ft "> <image src="../../img/ren.png" style="margin-right: 5px;vertical-align: middle;width:25px; height: 25px;"></image></view>
+    </navigator>
+
+ <navigator bindtap="del" class="weui-celll weui-cell_access" hover-class="weui-cell_active">
+      <view class="weui-cell__hd">
+        <image src="../../img/zhong.png" style="margin-right: 5px;vertical-align: middle;width:25px; height: 25px;"></image>
+      </view>
+      <view class="weui-cell__bd">终点位置</view>
+      <view class="weui-cell__ft ">{{distance}}</view>
+    </navigator>
+
+    </view>
+

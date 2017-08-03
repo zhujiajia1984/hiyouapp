@@ -1,0 +1,18 @@
+<view class="container">
+  <view class="page-body">
+   <view class="classnam">黄鹤楼门票</view>
+    <view class="page-section page-section-spacing swiper" >
+      <swiper indicator-dots="{{indicatorDots}}" class="cc"
+        autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+        <block wx:for="{{background}}" wx:key="*this" >
+          <swiper-item bindtap="admission" id='{{item.id}}'>
+            <view class="swiper-item {{item.class}}">
+              <image class="weui-grid__iconn" style="width: 90%;" src="{{item.img}}" ></image>
+              <view class="classname">{{item.type}}价格￥{{item.price}}</view>
+            </view>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+  </view>
+</view>

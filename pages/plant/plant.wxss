@@ -1,0 +1,136 @@
+/* plant.wxss */
+
+page {
+  background-color: #f8f8f8;
+  font-size: 16px;
+  font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+}
+
+.plantPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.plantPhoto {
+  margin-top: 10px;
+  font-size: 13px;
+  color: #888;
+  text-decoration: underline;
+}
+
+.plantCamera {
+  position: relative;
+  height: 59px;
+  align-items: center;
+}
+
+.imgCamera {
+  position: absolute;
+  width: 30px;
+  height: 26px;
+  left: 45px;
+  top: 16.5px;
+}
+
+.txtPlant {
+  position: absolute;
+  left: 90px;
+  font-weight: 600;
+  color: #fff;
+  line-height: 59px;
+}
+
+.viewContainer {
+  height: 100vh;
+}
+
+.imgView {
+  position: relative;
+  height: 50vh;
+  background-color: #f8f8f8;
+  /* background-color: red; */
+}
+
+.nameInPhoto {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  left: 0px;
+  top: 100%;
+  margin-top: -50px;
+}
+
+.nameText {
+  color: white;
+  font-size: 25px;
+}
+
+.detailView {
+  display: flex;
+  align-items: center;
+}
+
+.leftImg, .rightImg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 35vh;
+  width: 8%;
+}
+
+.content {
+  background-color: white;
+  height: 25vh;
+  width: 84%;
+}
+
+.deView {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.btnView {
+  height: 15vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.borderLine {
+  width: 200px;
+  height: 60px;
+  border: 1px solid #0d932d;
+  border-radius: 50px;
+  background-color: #0d932d;
+  display: flex;
+  align-items: center;
+}
+
+.thumbView {
+  width: 49%;
+  height: 23vh;
+  margin-left: 1vh;
+  margin-right: 1vh;
+}
+
+.textView{
+  width: 49%;
+  height: 23vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1vh;
+}
+
+.name{
+  font-size: 25px;
+  color: #5a5a5a;
+}
+
+.detailContent{
+  color: #666666;
+}

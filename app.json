@@ -1,0 +1,45 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/periphery/periphery",
+    "pages/ticket/ticket",
+    "pages/my/my",
+    "pages/scenic/scenic",
+    "pages/weather/weather",
+    "pages/collection/collection",
+    "pages/scenic_spot/scenic_spot",
+    "pages/line/line",
+    "pages/set/set",
+    "pages/wifi/wifi",
+    "pages/ticket/admission/admission",
+    "pages/myticket/myticket",
+    "pages/video/video",
+    "pages/location/location",
+    "pages/plant/plant"
+  ],
+  "window":{
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#12b7f4",
+    "navigationBarTitleText": "Hi游",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#fbf9fe"
+  },
+   "tabBar": {
+      "color": "#7A7E83",
+      "selectedColor": "#12b7f4",
+      "borderStyle": "black",
+      "backgroundColor": "#ffffff",
+      "list": [{
+        "pagePath": "pages/index/index",
+        "iconPath": "./img/zhu.png",
+        "selectedIconPath": "./img/zhuu.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "iconPath": "./img/wo.png",
+        "selectedIconPath": "./img/woo.png",
+        "text": "我的"
+      }]
+  } 
+}

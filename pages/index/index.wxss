@@ -1,0 +1,12 @@
+.map_container{ 
+    height: 300px; 
+    width: 100%; 
+} 
+ 
+.map { 
+    height: 208%; 
+    width: 100%; 
+}
+.place_info {
+    padding: 0 5px;
+}

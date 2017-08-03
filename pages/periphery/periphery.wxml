@@ -1,0 +1,39 @@
+
+<view class="weui-cells weui-cells_after-title">
+    <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__hd">
+            <image src="../../img/zhouu.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+        </view>
+        <view class="weui-cells__title">{{address}}</view>
+    </navigator>
+</view>
+<view class="page">
+    <view class="page__hd">
+        <view class="weui-cells__title">吃喝玩乐</view>
+    </view>
+    <view class="page__bd">
+        <view class="weui-grids">
+            <block wx:for="{{grids}}" wx:key="*this">
+                <navigator url="../scenic/scenic?img={{item.img}}&id={{item.id}}&name={{item.name}}" class="weui-grid" hover-class="weui-grid_active" >
+                    <image class="weui-grid__icon" src="{{item.img}}" />
+                    <view class="weui-grid__label">{{item.name}}</view>
+                </navigator>
+            </block>
+        </view>
+    </view>
+</view>
+<view class="page">
+    <view class="page__hd">
+        <view class="weui-cells__title">设施</view>
+    </view>
+    <view class="page__bd">
+        <view class="weui-grids">
+            <block wx:for="{{grid}}" wx:key="*this">
+                <navigator url="../scenic/scenic?img={{item.img}}&id={{item.id}}&name={{item.name}}" class="weui-grid" hover-class="weui-grid_active">
+                    <image class="weui-grid__icon" src="{{item.img}}" />
+                    <view class="weui-grid__label">{{item.name}}</view>
+                </navigator>
+            </block>
+        </view>
+    </view>
+</view>

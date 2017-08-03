@@ -1,0 +1,58 @@
+<!--首页-->
+<view wx:if="{{isMainPage}}" class="plantPage">
+  <view class="plantImg">
+    <image src="/img/plant.png" style="width:100px;height:98px;margin-top:100px;margin-bottom:100px"></image>
+  </view>
+  <view class="plantCamera" bindtap="takePicture">
+    <image src="/img/btnline.png" style="width:200px;height:59px;"></image>
+    <image src="/img/camera.png" class="imgCamera"></image>
+    <text class="txtPlant">拍照识花</text>
+  </view>
+  <view class="plantPhoto" bindtap="choosePhoto">
+    <text>从相册选择</text>
+  </view>
+</view>
+<!--详情页-->
+<view wx:else class="viewContainer">
+  <view class="imgView">
+    <image src="{{photoPath}}" style="width:100%;height:100%" mode="scaleToFill"></image>
+    <view class="nameInPhoto"><text class="nameText">{{plantName}}</text></view>
+  </view>
+  <view class="detailView">
+    <view class="leftImg">
+      <image src="/img/left.png" style="width:30px;height:30px;" hidden="{{isHideLeftImg}}"></image>
+    </view>
+    <view class="content">
+      <swiper style="height:25vh" bindchange="changePlant">
+        <block wx:for="{{plants}}" wx:key="Name">
+          <swiper-item>
+            <view class="deView">
+              <view class="thumbView">
+                <image src="{{item.ImageUrl}}" style="width:100%;height:100%"></image>
+              </view>
+              <view class="textView">
+                <view class="name">{{item.Name}}</view>     
+                <view class="detailContent">科属：{{item.Family}}</view>
+                <view class="detailContent">属名：{{item.Genus}}</view>
+                <view class="detailContent">可能性：{{item.Score}}</view>
+                 <view class="detailContent">别名：{{item.AliasName}}</view>
+              </view>
+            </view>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+    <view class="rightImg">
+      <image src="/img/right.png" style="width:30px;height:30px;" hidden="{{isHideRightImg}}"></image>
+    </view>
+  </view>
+  <view class="btnView">
+    <view class="borderLine" bindtap="takePicture">
+      <image src="/img/camera.png" style="width:30px;height:26px;margin-left:45px;"></image>
+      <text style="margin-left:15px;font-weight:600;color:#fff;">拍照识花</text>
+    </view>
+    <view class="plantPhoto" bindtap="choosePhoto">
+      <text>从相册选择</text>
+    </view>
+  </view>
+</view>

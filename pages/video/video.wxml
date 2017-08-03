@@ -1,0 +1,42 @@
+<view>
+  <view class="imgView">
+    <view class="ctlRow">
+      <view class="ctlItem">
+        <image src="/img/send.png" style="width:30px;height:30px;margin:10px 10px 10px 5px;"></image>
+        <button open-type="share" style="position:absolute;left:5px;top:0px;width:40px;height:40px;border:none" plain="true"></button>
+      </view>
+      <view class="ctlItem">
+        <image src="/img/naviSci.png" style="width:30px;height:30px;margin:10px 5px 10px 5px;;" bindtap="navigation"></image>
+      </view>
+      <view class="ctlItem" wx:if="{{isNotFavour}}">
+        <image src="/img/favourNo.png" style="width:30px;height:30px;margin:10px 5px 10px 5px;;" bindtap="clickFavour"></image>
+      </view>
+      <view class="ctlItem" wx:else>
+        <image src="/img/favourYes.png" style="width:30px;height:30px;margin:10px 5px 10px 5px;;" bindtap="clickFavour"></image>
+      </view>
+    </view>
+    <image src="{{map}}" style="width:100%; height: 200px;" mode="scaleToFill"></image>
+    <view wx:if="{{isPause}}">
+      <image src="/img/play.png" style="position:absolute;left:{{playPos.leftPos}};top:{{playPos.topPos}};width:60px;height:60px;" bindtap="playBgAudio"></image>
+    </view>
+    <view wx:else>
+      <image src="/img/pause.png" style="position:absolute;left:{{playPos.leftPos}};top:{{playPos.topPos}};width:60px;height:60px;" bindtap="pauseBgAudio"></image>
+    </view>
+    <view class="row">
+      <view class="curTime" hidden="{{isHideTime}}">{{curTime}}</view>
+      <view class="totalTime" hidden="{{isHideTime}}">{{totalTime}}</view>
+    </view>
+  </view>
+  <view>
+    <progress activeColor="#12b7f4" percent="{{curPercent}}" backgroundColor="white" stroke-width="3" />
+  </view>
+  <view class="weui-article">
+    <view class="weui-article__h1">{{name}}</view>
+    <block wx:for="{{contents}}" wx:key="type">
+      <view wx:if="{{item.isText}}" class="weui-article__p">  \r\n\r\n\r\n\r\n{{item.content}}</view>
+      <view wx:else class="weui-article__p">
+        <image class="weui-article__img" src="{{item.src}}" mode="aspectFit" style="height: 180px" />
+      </view>
+    </block>
+  </view>
+</view>
