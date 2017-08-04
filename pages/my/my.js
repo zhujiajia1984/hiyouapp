@@ -67,8 +67,17 @@ Page({
     wx.openSetting({
       success: (res) => {
         if (res.authSetting["scope.userLocation"]) {
-          wx.reLaunch({
-            url: '/pages/index/index'
+          // 提示框
+          wx.showModal({
+            title: '提示',
+            confirmText: '我知道了',
+            showCancel: false,
+            content: '请在首页右下角点击刷新按钮!',
+            success: function (res) {
+              wx.switchTab({
+                url: '/pages/index/index'
+              })
+            }
           })
         }
       }

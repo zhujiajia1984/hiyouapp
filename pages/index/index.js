@@ -29,7 +29,7 @@ Page({
           ScienicType: "marker"
         },
         complete: function (res) {
-          console.log(res)
+          // console.log(res)
           if (res == null || res.data == null) {
             console.error('网络请求失败');
             return
@@ -51,7 +51,7 @@ Page({
 
         },
         complete: function (res) {
-          console.log(res)
+          // console.log(res)
           if (res == null || res.data == null) {
             console.error('网络请求失败');
             return
@@ -63,7 +63,7 @@ Page({
     }
   },
   regionchange(e) {
-    console.log(e.type)
+    // console.log(e.type)
   },
   markertap(e) {
     wx.showActionSheet({
@@ -84,7 +84,7 @@ Page({
     })
   },
   controltap(e) {
-    console.log(e.controlId)
+    // console.log(e.controlId)
   },
   indexdata(){
     var self = this
@@ -98,7 +98,7 @@ Page({
       method: "GET",
       data: {},
       complete: function (res) {
-        console.log(res)
+        // console.log(res)
         if (res == null || res.data == null) {
           console.error('网络请求失败');
           return
@@ -166,7 +166,7 @@ Page({
         ScienicType: "marker"
       },
       complete: function (res) {
-        console.log(res)
+        // console.log(res)
         if (res == null || res.data == null) {
           console.error('网络请求失败');
           return
@@ -183,7 +183,7 @@ Page({
       var sysInfo = wx.getSystemInfoSync();  //获取手机屏幕参数
       phoneParam.phoneWidth = sysInfo.windowWidth;
       phoneParam.phoneHeight = sysInfo.windowHeight;
-      console.log(phoneParam);
+      // console.log(phoneParam);
     } catch (e) {
       console.log("getSystemInfoSync failed");
       return;
@@ -258,10 +258,8 @@ Page({
       type: 'gcj02',
       success: function (res) {
         wx.hideLoading()
-        self.setData({ latitude: res.latitude })
-        self.setData({ longitude: res.longitude })
-        self.setData({ controls: controls, leftDis: leftDis, topDis: topDis, isCtlShow: true })
-
+        self.setData({ latitude: res.latitude, longitude: res.longitude, controls: controls,
+         leftDis: leftDis, topDis: topDis, isCtlShow: true})
       },
       fail: function () {
         wx.hideLoading()
@@ -271,7 +269,23 @@ Page({
           showCancel: false,
           content: '定位失败,你将无法正常使用,请在"我的"页面中去授权!',
           success: function (res) {
-
+            // 显示刷新按钮
+            var controls = [];
+            var leftPos = phoneParam.phoneWidth - space - 40;
+            var topPos = (phoneParam.phoneHeight - space * 2 - 40 * 2);
+            var ctlPos4 = {
+              id: 4,
+              iconPath: '/img/refresh.png',
+              position: {
+                left: leftPos,
+                top: topPos,
+                width: 40,
+                height: 40,
+              },
+              clickable: true
+            };
+            controls.push(ctlPos4);
+            self.setData({ controls: controls });
           }
         })
       }
@@ -300,7 +314,7 @@ Page({
         polylin[0].points.push(temp)
       }
       self.setData({ polyline: polylin })
-      console.log(self.data.polyline)
+      // console.log(self.data.polyline)
     })
     wx.request({
       url: "https://hiyoutest.doublecom.net/wxAppToolApi/getweather/",
@@ -346,7 +360,7 @@ Page({
     if(e.controlId==3){
       wx.scanCode({
         success: (res) => {
-          console.log(res)
+          // console.log(res)
           if (res.result.split('/')[2]=="hiyoutest.doublecom.net"){
             var result = res.result.split('?');
             var url = '/pages/video/video?' + result[1];
@@ -378,7 +392,6 @@ Page({
     if(e.controlId == 4 ){
       this.setData({ index:0 })
       this.indexdata()
-
     }
   },
   weather(){
@@ -453,5 +466,28 @@ Page({
       self.setData({ scenic_lat: latt, scenic_lng: lngg })
     }
     self.setData({ markers: mark })
+  },
+
+  /**
+ * 用户点击右上角分享
+ */
+  onShareAppMessage: function () {
+    var title = "Hi游吧";
+    var path = "/pages/index/index";
+    return {
+      title: title,
+      path: path,
+      success: function (res) {
+        // 转发成功
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
   }
 })
+
+
+
+
+
