@@ -25,6 +25,7 @@ Page({
       isText: "",
       src: "",
       content: "",
+      id: 0,
     },    // 内容
   },
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -165,6 +166,17 @@ Page({
   onLoad: function (options) {
     var contents = [];
     var self = this
+    //是否是从微信扫码进入
+    if (app.globalData.scene == 1011) {
+      console.log("go to 微信扫一扫");
+      console.log(app.globalData.query);
+      // 获取id参数
+      var url = decodeURIComponent(app.globalData.query.q);
+      var id = url.split('?')[1].split('id=')[1];
+      options.id = id;
+      console.log(url);
+      console.log(id);
+    }
     // 初始化播放按钮图片位置
     var sysInfo = wx.getSystemInfoSync();  //获取手机屏幕参数
     var playPos = {};
@@ -200,6 +212,7 @@ Page({
               // 解析html标签
               contents = res.data[0].MarkerText;
               for (var i = 0; i < contents.length; i++) {
+                contents[i].id = i;
                 if (contents[i].type == "img") {
                   contents[i].isText = false;
                   contents[i].src = "https://hiyoutest.doublecom.net" + contents[i].src;
@@ -252,6 +265,7 @@ Page({
                       self.initBgAudio(res.data[0].MarkerVideo, res.data[0].MarkerName, res.data[0].MarkerImg);
                       contents = res.data[0].MarkerText;
                       for (var i = 0; i < contents.length; i++) {
+                        contents[i].id = i;
                         if (contents[i].type == "img") {
                           contents[i].isText = false;
                           contents[i].src = "https://hiyoutest.doublecom.net" + contents[i].src;

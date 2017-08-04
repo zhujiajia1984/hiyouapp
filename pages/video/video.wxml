@@ -32,7 +32,7 @@
   </view>
   <view class="weui-article">
     <view class="weui-article__h1">{{name}}</view>
-    <block wx:for="{{contents}}" wx:key="type">
+    <block wx:for="{{contents}}" wx:key="{{id}}">
       <view wx:if="{{item.isText}}" class="weui-article__p">  \r\n\r\n\r\n\r\n{{item.content}}</view>
       <view wx:else class="weui-article__p">
         <image class="weui-article__img" src="{{item.src}}" mode="aspectFit" style="height: 180px" />
