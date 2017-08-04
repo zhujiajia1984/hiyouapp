@@ -68,10 +68,7 @@ Page({
       success: (res) => {
         if (res.authSetting["scope.userLocation"]) {
           wx.reLaunch({
-            url: '/pages/index/index',
-            fail:function(res){
-              console.log(res);
-            }
+            url: '/pages/index/index'
           })
         }
       }
