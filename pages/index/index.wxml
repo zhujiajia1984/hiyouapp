@@ -5,7 +5,7 @@
     </cover-view>
     <cover-view wx:if="{{isCtlShow}}" style="position:absolute;left:{{leftDis}};top:{{topDis}};">
       <picker bindchange="typeChange" value="{{index}}" range="{{types}}" range-key="name">
-        <cover-image src="{{types[index].path}}" style="width:40px;height:40px;"></cover-image> 
+        <cover-image src="{{types[index].path}}" style="width:40px;height:40px;"></cover-image>
       </picker>
     </cover-view>
 </map>
